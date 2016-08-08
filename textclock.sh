@@ -77,6 +77,10 @@ index=0
 
 if [[ $min -ge $MODE_CALC ]]; then
     index=$(( (min - $MODE_CALC) / 5 + 1))
+    if [[ $index -gt 11 ]]; then
+        index=0
+        hr=$((hr + 1))
+    fi
 fi
 
 if [[ $index -gt 4 || $index -eq 3 ]]; then
