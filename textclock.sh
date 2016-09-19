@@ -98,5 +98,5 @@ else
 fi
 hrname=${HOUR_NAMES[index]}
 
-printf "$PREF$timestr$dots\n" "$hrname"
+printf "$timestr$dots\n" "$hrname"
 
