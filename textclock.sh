@@ -4,7 +4,7 @@ hr=($(date '+%_H'))
 min=10#$(date '+%M')
 calcdot=$((min % 5))
 
-HOUR_NAMES=(
+HOUR_NAMES_DE=(
     "eins"
     "zwei"
     "drei"
@@ -20,24 +20,60 @@ HOUR_NAMES=(
     "ein"
 )
 
-MESSAGE=(
+HOUR_NAMES_NO=(
+    "ett"
+    "to"
+    "tre"
+    "fire"
+    "fem"
+    "seks"
+    "sju"
+    "åtte"
+    "ni"
+    "ti"
+    "eleve"
+    "tolv"
+    "ett"
+)
+
+MESSAGE_DE=(
     "%s Uhr"
     "fünf nach %s"
     "zehn nach %s"
     "viertel %s"
-    "zwanzig nach %s"
+    "zehn vor halb %s"
     "fünf vor halb %s"
     "halb %s"
     "fünf nach halb %s"
-    "zwanzig vor %s"
+    "zehn nach halb %s"
     "dreiviertel %s"
     "zehn vor %s"
     "fünf vor %s"
 )
+
+MESSAGE_NO=(
+    "Klokka er %s"
+    "fem over %s"
+    "ti over %s"
+    "kvart over %s"
+    "ti på halv %s"
+    "fem på halv %s"
+    "halv %s"
+    "fem over halv %s"
+    "ti over halv %s"
+    "kvart på %s"
+    "ti på %s"
+    "fem på %s"
+)
+
 PREF="es ist "
+
+HOUR_NAMES=("${HOUR_NAMES_DE[@]}")
+MESSAGE=("${MESSAGE_DE[@]}")
 
 DOTS=0
 MODE_CALC=3
+ADD_HR_INDEX=2
 
 while [ "$1" != "" ]; do
     case $1 in
@@ -50,6 +86,12 @@ while [ "$1" != "" ]; do
         -f)
             MODE_CALC=3
             ;;
+		-n)
+			HOUR_NAMES=("${HOUR_NAMES_NO[@]}")
+			MESSAGE=("${MESSAGE_NO[@]}")
+			DE_TIME=0
+			ADD_HR_INDEX=3
+			;;
     esac
     shift
 done
@@ -83,7 +125,7 @@ if [[ $min -ge $MODE_CALC ]]; then
     fi
 fi
 
-if [[ $index -gt 4 || $index -eq 3 ]]; then
+if [[ $index -gt $ADD_HR_INDEX ]]; then
     hr=$((hr + 1))
 fi
 timestr=${MESSAGE[index]}
