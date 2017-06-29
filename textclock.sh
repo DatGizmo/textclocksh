@@ -31,7 +31,7 @@ HOUR_NAMES_NO=(
     "åtte"
     "ni"
     "ti"
-    "eleve"
+    "elleve"
     "tolv"
     "ett"
 )
